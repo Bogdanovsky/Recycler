@@ -116,10 +116,10 @@ class PersonAdapter() : RecyclerView.Adapter<PersonAdapter.PersonViewHolder>(),
                 setData()
             }
         }
-        val personDiffCallback = PersonDiffUtilCallback(people, Database.peopleListFromDB)
-        val personDiffResult = DiffUtil.calculateDiff(personDiffCallback)
-        personDiffResult.dispatchUpdatesTo(this)
-//        notifyItemMoved(fromPosition, toPosition) // more effective than diffutil in that case
+//        val personDiffCallback = PersonDiffUtilCallback(people, Database.peopleListFromDB)
+//        val personDiffResult = DiffUtil.calculateDiff(personDiffCallback)
+//        personDiffResult.dispatchUpdatesTo(this)
+        notifyItemMoved(fromPosition, toPosition) // more effective than diffutil in that case
         setData()
     }
 
