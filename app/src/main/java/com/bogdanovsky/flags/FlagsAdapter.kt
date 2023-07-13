@@ -10,28 +10,28 @@ import coil.load
 
 class FlagsAdapter : RecyclerView.Adapter<FlagsAdapter.FlagsViewHolder>() {
 
-    val countries = Countries.countries
+    private val countries = Countries.getCountries()
 
-    class FlagsViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    class FlagsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FlagsViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.flag_item_view, parent, false)
+        val itemView =
+            LayoutInflater.from(parent.context).inflate(R.layout.flag_item_view, parent, false)
         return FlagsViewHolder(itemView)
     }
 
-    override fun getItemCount(): Int {
-        return countries.size
-    }
+    override fun getItemCount(): Int = countries.size
 
-    override fun onBindViewHolder(holder: FlagsViewHolder, position: Int) {
-        holder.itemView.findViewById<TextView>(R.id.id).text = countries[position].first
-        holder.itemView.findViewById<TextView>(R.id.name).text = countries[position].second
-        holder.itemView.findViewById<ImageView>(R.id.flag_image).
-        load("https://flagcdn.com/w320/${countries[position].first}.webp") {
-            placeholder(R.drawable.baseline_broken_image_24)
-            error(R.drawable.baseline_error_24)
+    override fun onBindViewHolder(holder: FlagsAdapter.FlagsViewHolder, position: Int) {
+        with(holder) {
+            itemView.findViewById<TextView>(R.id.id).text = countries[position].first
+            itemView.findViewById<TextView>(R.id.name).text = countries[position].second
+            itemView.findViewById<ImageView>(R.id.flag_image)
+                .load("https://flagcdn.com/w320/${countries[position].first}.webp") {
+                    placeholder(R.drawable.baseline_broken_image_24)
+                    error(R.drawable.baseline_error_24)
+                }
         }
-
     }
 }
