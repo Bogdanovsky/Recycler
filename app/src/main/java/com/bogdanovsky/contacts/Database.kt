@@ -6,6 +6,7 @@ class Database {
     companion object {
 
         private val faker: Faker = Faker.instance()
+
         val peopleListFromDB =
             (1..100).map {
                 Person(

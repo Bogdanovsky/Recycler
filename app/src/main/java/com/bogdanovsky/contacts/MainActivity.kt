@@ -1,8 +1,9 @@
 package com.bogdanovsky.contacts
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,17 +12,17 @@ import com.bogdanovsky.contacts.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private val adapter = PersonAdapter()
+    private val adapter = PersonAdapter(Database.peopleListFromDB)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val recycler: RecyclerView = binding.root.findViewById(R.id.recycler)
-        recycler.layoutManager = LinearLayoutManager(this)
-
-        recycler.adapter = adapter
+        val recycler = binding.root.findViewById<RecyclerView>(R.id.recycler).apply {
+            layoutManager = LinearLayoutManager(this@MainActivity)
+            adapter = this@MainActivity.adapter
+        }
 
         val itemTouchHelper = ItemTouchHelper(PersonItemTouchHelper(adapter))
         itemTouchHelper.attachToRecyclerView(recycler)
@@ -32,7 +33,7 @@ class MainActivity : AppCompatActivity() {
                 Database.itemsToDeleteIds.contains(it.id)
             })
             val personDiffCallback =
-                PersonDiffUtilCallback(adapter.people, Database.peopleListFromDB)
+                PersonDiffUtilCallback(adapter.currentPeopleList, Database.peopleListFromDB)
             val personDiffResult = DiffUtil.calculateDiff(personDiffCallback)
             personDiffResult.dispatchUpdatesTo(adapter)
             adapter.setData()
@@ -41,7 +42,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        val personDiffCallback = PersonDiffUtilCallback(adapter.people, Database.peopleListFromDB)
+        val personDiffCallback = PersonDiffUtilCallback(adapter.currentPeopleList, Database.peopleListFromDB)
         val personDiffResult = DiffUtil.calculateDiff(personDiffCallback)
         personDiffResult.dispatchUpdatesTo(adapter)
         adapter.setData()

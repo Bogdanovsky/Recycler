@@ -6,8 +6,4 @@ data class Person(
     var surname: String,
     var phoneNumber: String,
     var avatar: String,
-) {
-    fun clone(): Person {
-        return Person(id, name, surname, phoneNumber, avatar)
-    }
-}
+)

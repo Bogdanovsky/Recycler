@@ -11,20 +11,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/detailed_text_view_margin"
+        android:text="ID: 42"
         android:textSize="@dimen/details_text_size"
         app:layout_constraintStart_toStartOf="parent"
-        android:text="ID: 42"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/name_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/detailed_text_view_margin"
+        android:text="Name: "
         android:textSize="@dimen/details_text_size"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/id_text_view"
-        android:text="Name: " />
+        app:layout_constraintTop_toBottomOf="@id/id_text_view" />
 
     <EditText
         android:id="@+id/name_edit_view"
@@ -41,10 +41,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/detailed_text_view_margin"
+        android:text="Surname: "
         android:textSize="@dimen/details_text_size"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/name_text_view"
-        android:text="Surname: " />
+        app:layout_constraintTop_toBottomOf="@id/name_text_view" />
 
     <EditText
         android:id="@+id/surname_edit_view"
@@ -61,10 +61,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/detailed_text_view_margin"
+        android:text="Phone: "
         android:textSize="@dimen/details_text_size"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/surname_text_view"
-        android:text="Phone: " />
+        app:layout_constraintTop_toBottomOf="@id/surname_text_view" />
 
     <EditText
         android:id="@+id/phone_edit_view"
@@ -80,10 +80,10 @@
         android:id="@+id/save_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
         android:text="Save"
-        app:layout_constraintTop_toBottomOf="@id/phone_edit_view"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="36dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/phone_edit_view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

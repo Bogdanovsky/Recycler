@@ -4,12 +4,11 @@ import android.graphics.Color
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
-class PersonItemTouchHelper(private val itemTouchHelperAdapter: ItemTouchHelperAdapter) : ItemTouchHelper.Callback() {
-
+class PersonItemTouchHelper(private val itemTouchHelperAdapter: ItemTouchHelperAdapter) :
+    ItemTouchHelper.Callback() {
 
     override fun getMovementFlags(
-        recyclerView: RecyclerView,
-        viewHolder: RecyclerView.ViewHolder
+        recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder
     ): Int {
         val dragFlags = ItemTouchHelper.UP or ItemTouchHelper.DOWN
         val swipeFlags = ItemTouchHelper.START or ItemTouchHelper.END
@@ -35,5 +34,4 @@ class PersonItemTouchHelper(private val itemTouchHelperAdapter: ItemTouchHelperA
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
         itemTouchHelperAdapter.onItemDismiss(viewHolder.adapterPosition)
     }
-
 }
